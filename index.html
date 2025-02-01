@@ -19,6 +19,7 @@
       overflow: hidden;
       position: relative;
       background: url('https://images.unsplash.com/photo-1503455637927-730bce8583c0?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGluayUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center/cover;
+      transition: background 1s ease-in-out;
     }
 
     h1 {
@@ -223,7 +224,7 @@
     /* Show Message Button */
     .show-message-button {
       display: none;
-      margin-top: 20px;
+      margin-top: 50px; /* Lowered the button */
       padding: 10px 20px;
       font-size: 1.2rem;
       border: none;
@@ -273,9 +274,9 @@
 
   <!-- YAYY GIF Container -->
   <div class="yayy-container">
-    <img src="https://mewtru.com/heart.gif" alt="YAYY" class="yayy-gif">
+    <img src="https://media.tenor.com/TEC6z0acIbUAAAAj/cute-bears-love.gif" alt="YAYY" class="yayy-gif">
     <div class="yayy-text">YAYY</div>
-    <button class="show-message-button">Show Message</button>
+    <button class="show-message-button">Show Hidden Message</button>
   </div>
 
   <!-- Dialogue Box -->
@@ -294,6 +295,7 @@
     const dialogueBox = document.querySelector('.dialogue-box');
     const yayyContainer = document.querySelector('.yayy-container');
     const showMessageButton = document.querySelector('.show-message-button');
+    const body = document.body;
 
     // Function to move the "No" button randomly and spawn new "Yes" buttons
     function moveNoButton() {
@@ -337,8 +339,27 @@
 
     // Function to show the YAYY GIF
     function showYayyGif() {
-      yayyContainer.style.display = 'block';
+      // Change the background to the new image
+      body.style.backgroundImage = 'url("https://static.vecteezy.com/system/resources/previews/016/776/606/non_2x/realistic-valentines-day-red-background-with-hearth-vector.jpg")';
+
+      // Hide the initial content
+      document.querySelector('h1').style.display = 'none';
+      yesButton.style.display = 'none';
+      noButton.style.display = 'none';
+
+      // Remove existing "Yes" buttons
+      const newYesButtons = document.querySelectorAll('.newYesButton');
+      newYesButtons.forEach(button => button.remove());
+
+      // Show the YAYY GIF container
+      yayyContainer.style.display = 'flex';
+      yayyContainer.style.flexDirection = 'column';
+      yayyContainer.style.alignItems = 'center';
       showMessageButton.style.display = 'block';
+
+      // Ensure the GIF is visible
+      const gif = document.querySelector('.yayy-gif');
+      gif.style.display = 'block';
     }
 
     // Function to show the personalized message
@@ -359,7 +380,7 @@
       }
     });
 
-    // Event listener for the "Show Message" button
+    // Event listener for the "Show Hidden Message" button
     showMessageButton.addEventListener('click', showCustomMessage);
   </script>
 </body>
