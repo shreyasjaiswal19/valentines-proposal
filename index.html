@@ -18,7 +18,7 @@
       height: 100vh;
       overflow: hidden;
       position: relative;
-      background: url('https://media.istockphoto.com/id/1126906650/vector/valentines-day-background-with-hearts-and-stars.jpg?s=612x612&w=0&k=20&c=KEICWnV6xlTuUnmoy2zm94FVkmiiIcf3Rkdz1cTcbWo=') no-repeat center center/cover;
+      background: url('https://images.unsplash.com/photo-1503455637927-730bce8583c0?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGluayUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center/cover;
     }
 
     h1 {
@@ -210,14 +210,33 @@
     }
 
     .yayy-gif {
-      width: 200px;
-      height: 200px;
+      width: 300px;
+      height: 300px;
     }
 
     .yayy-text {
-      font-size: 2rem;
-      color: #e74c3c;
+      font-size: 2.5rem;
+      color: #8B0000; /* Deep red */
       margin-top: 10px;
+    }
+
+    /* Show Message Button */
+    .show-message-button {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #f4d03f;
+      color: #e74c3c;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .show-message-button:hover {
+      background-color: #e74c3c;
+      color: white;
     }
   </style>
 </head>
@@ -256,6 +275,7 @@
   <div class="yayy-container">
     <img src="https://mewtru.com/heart.gif" alt="YAYY" class="yayy-gif">
     <div class="yayy-text">YAYY</div>
+    <button class="show-message-button">Show Message</button>
   </div>
 
   <!-- Dialogue Box -->
@@ -273,6 +293,7 @@
     const yesButton = document.getElementById('yesButton');
     const dialogueBox = document.querySelector('.dialogue-box');
     const yayyContainer = document.querySelector('.yayy-container');
+    const showMessageButton = document.querySelector('.show-message-button');
 
     // Function to move the "No" button randomly and spawn new "Yes" buttons
     function moveNoButton() {
@@ -317,12 +338,13 @@
     // Function to show the YAYY GIF
     function showYayyGif() {
       yayyContainer.style.display = 'block';
+      showMessageButton.style.display = 'block';
+    }
 
-      // Hide the YAYY GIF after 3 seconds and show the dialogue box
-      setTimeout(() => {
-        yayyContainer.style.display = 'none';
-        dialogueBox.style.display = 'block';
-      }, 3000);
+    // Function to show the personalized message
+    function showCustomMessage() {
+      yayyContainer.style.display = 'none';
+      dialogueBox.style.display = 'block';
     }
 
     // Happy Animation on Clicking "Yes"
@@ -336,6 +358,9 @@
         showYayyGif();
       }
     });
+
+    // Event listener for the "Show Message" button
+    showMessageButton.addEventListener('click', showCustomMessage);
   </script>
 </body>
 </html>
